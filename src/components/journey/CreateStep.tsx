@@ -21,6 +21,7 @@ export function CreateStep({ lib, update }: StepProps) {
     aiPost<CreateResult>("create", {
       reflection: lib.reflection,
       concept: lib.persona?.concept,
+      pickedTitle: lib.experiences.find((e) => e.pickedAt)?.title,
     })
       .then((res) => {
         if (cancelled) return;
