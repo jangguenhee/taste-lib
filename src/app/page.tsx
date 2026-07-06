@@ -1,65 +1,70 @@
-import Image from "next/image";
+import Link from "next/link";
+
+const ACTS = [
+  { no: "1막", title: "나를 마주하기", desc: "질문과 취향으로 원재료를 캐냅니다" },
+  { no: "2막", title: "되고 싶은 나", desc: "페르소나를 입어보고, 하나로 정합니다" },
+  { no: "3막", title: "살아내기", desc: "당신다운 책과 경험을 만납니다" },
+  { no: "4막", title: "표현하기", desc: "끌림이 첫 창작물이 됩니다" },
+];
+
+const TRUST = [
+  { icon: "🔓", text: "로그인 없이 끝까지 할 수 있어요" },
+  { icon: "📦", text: "답변은 이 브라우저에만 저장돼요 — 서버로 가져가지 않아요" },
+  { icon: "🤝", text: "공유할지 말지는 언제나 당신이 정해요" },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <main className="flex-1 flex flex-col items-center px-6 py-16 sm:py-24">
+      <div className="w-full max-w-2xl">
+        {/* 브랜드 */}
+        <p className="text-sm tracking-widest text-muted mb-6">📚 취향 서재</p>
+
+        {/* 히어로 */}
+        <h1 className="text-3xl sm:text-4xl font-bold leading-snug mb-5">
+          나를 잃어버린 것 같은 날,
+          <br />
+          <span className="text-accent">취향은 아직 나를 기억하고 있어요.</span>
+        </h1>
+        <p className="text-base sm:text-lg text-muted leading-relaxed mb-10">
+          좋아하는 것들을 서재에 적재해 보세요. 그 안에서 당신의 페르소나가
+          모습을 드러내고, 오늘 첫 창작물까지 손에 쥐게 됩니다.
+          <br />
+          소비하던 사람에서, 만드는 사람으로 — 10분이면 충분해요.
+        </p>
+
+        {/* CTA */}
+        <Link
+          href="/journey"
+          className="inline-block bg-accent text-background font-semibold rounded-xl px-8 py-4 text-lg hover:opacity-90 transition-opacity"
+        >
+          서재 열기 →
+        </Link>
+
+        {/* 여정 미리보기 */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-14">
+          {ACTS.map((act) => (
+            <div
+              key={act.no}
+              className="bg-card border border-line rounded-xl p-5"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+              <p className="text-xs text-accent mb-1">{act.no}</p>
+              <p className="font-semibold mb-1">{act.title}</p>
+              <p className="text-sm text-muted">{act.desc}</p>
+            </div>
+          ))}
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        {/* 신뢰 고지 — PRD §7 */}
+        <div className="mt-12 border-t border-line pt-8 space-y-3">
+          {TRUST.map((t) => (
+            <p key={t.text} className="text-sm text-muted">
+              <span className="mr-2">{t.icon}</span>
+              {t.text}
+            </p>
+          ))}
         </div>
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }
