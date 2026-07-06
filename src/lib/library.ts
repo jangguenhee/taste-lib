@@ -37,8 +37,10 @@ export interface Library {
   answers: Record<string, string>; // ① 인터뷰 답변
   tastes: TasteItem[]; // ① 취향 적재 (이후 계속 자람)
   mirror?: { patterns: string[]; strengths: string[]; summary: string }; // ②
+  tryonChoice?: string; // ③ 입어본 후보 중 선택한 컨셉 id
   persona?: Persona; // ④
   experiences: Recommendation[]; // ⑤
+  reflection?: string; // ⑥-a 지금 감상 (끌림의 이유)
   contents: ContentCard[]; // ⑦
 }
 
