@@ -81,7 +81,8 @@ export function DiscoverStep({ lib, update }: StepProps) {
       {/* 현재 질문 */}
       <div className="bg-card border border-line rounded-2xl rounded-tl-sm p-6 mb-4">
         <p className="text-xs text-accent mb-2">
-          {q.taste ? "취향 적재" : `질문 ${current + 1} / ${total}`}
+          {current + 1} / {total}
+          {q.taste ? " · 서재에 꽂혀요" : ""}
         </p>
         <p className="text-lg font-semibold leading-relaxed mb-2">
           {q.emoji} {q.question}
@@ -95,8 +96,12 @@ export function DiscoverStep({ lib, update }: StepProps) {
         onKeyDown={(e) => {
           if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) submit();
         }}
-        placeholder="편하게, 짧게 적어도 괜찮아요…"
-        rows={4}
+        placeholder={
+          q.long
+            ? "여기에 그대로 붙여넣으면 돼요. 정리 안 해도 괜찮아요…"
+            : "편하게, 짧게 적어도 괜찮아요…"
+        }
+        rows={q.long ? 10 : 4}
         className="w-full bg-card border border-line rounded-xl p-4 text-foreground placeholder:text-muted focus:outline-none focus:border-accent resize-none"
       />
       <div className="flex justify-between items-center mt-3">
