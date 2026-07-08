@@ -6,15 +6,44 @@
 import { useEffect, useState } from "react";
 import { aiPost } from "@/lib/ai";
 import type { CreateResult } from "@/lib/fixtures";
+import { supabase } from "@/lib/supabase";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Thinking } from "@/components/ui/Thinking";
 import { SampleBadge } from "@/components/ui/SampleBadge";
+import { EmailLock } from "@/components/auth/EmailLock";
 import type { StepProps } from "./types";
 
 export function CreateStep({ lib, update }: StepProps) {
   const [result, setResult] = useState<CreateResult | null>(null);
   const [isMock, setIsMock] = useState(false);
+  const [showLock, setShowLock] = useState(false);
+
+  function keep() {
+    if (!result) return;
+    update({
+      contents: [
+        ...lib.contents,
+        {
+          title: result.title,
+          hook: result.hook,
+          caption: result.caption,
+          whyMe: result.whyMe,
+          createdAt: new Date().toISOString(),
+        },
+      ],
+    });
+  }
+
+  // "간직하기" = 적재의 순간 — 로그인 안 되어 있으면 여기서 제안 (건너뛰기 가능)
+  async function onKeepClick() {
+    const { data } = await supabase().auth.getSession();
+    if (data.session) {
+      keep();
+    } else {
+      setShowLock(true);
+    }
+  }
 
   useEffect(() => {
     let cancelled = false;
@@ -56,26 +85,19 @@ export function CreateStep({ lib, update }: StepProps) {
         </p>
       </Card>
 
-      <div className="text-center">
-        <Button
-          onClick={() =>
-            update({
-              contents: [
-                ...lib.contents,
-                {
-                  title: result.title,
-                  hook: result.hook,
-                  caption: result.caption,
-                  whyMe: result.whyMe,
-                  createdAt: new Date().toISOString(),
-                },
-              ],
-            })
-          }
-        >
-          서재에 간직할게요 →
-        </Button>
-      </div>
+      {showLock ? (
+        <div className="mb-4">
+          <EmailLock
+            title="이 서재에 적재하려면, 이메일 하나면 돼요"
+            desc="당신의 첫 콘텐츠와 페르소나가 어떤 기기에서든 열리게 잠가둘게요. 메일의 링크를 누른 뒤 돌아오면 이어집니다."
+            onSkip={keep}
+          />
+        </div>
+      ) : (
+        <div className="text-center">
+          <Button onClick={onKeepClick}>서재에 간직할게요 →</Button>
+        </div>
+      )}
     </div>
   );
 }

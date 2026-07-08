@@ -105,7 +105,7 @@ export function DiscoverStep({ lib, update }: StepProps) {
         className="w-full bg-card border border-line rounded-xl p-4 text-foreground placeholder:text-muted focus:outline-none focus:border-accent resize-none"
       />
       <div className="flex justify-between items-center mt-3">
-        <p className="text-xs text-muted">답변은 이 브라우저에만 저장돼요</p>
+        <p className="text-xs text-muted">답변은 문항마다 자동 저장돼요</p>
         <Button onClick={submit} disabled={!input.trim()}>
           다음 →
         </Button>
