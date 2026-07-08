@@ -13,7 +13,7 @@ import { Thinking } from "@/components/ui/Thinking";
 import { SampleBadge } from "@/components/ui/SampleBadge";
 import type { StepProps } from "./types";
 
-const KIND_LABEL = { book: "📖 책", class: "🎨 클래스" } as const;
+const KIND_LABEL = { book: "📖 책", class: "🎨 클래스", video: "🎬 영상" } as const;
 
 export function ExperienceStep({ lib, update }: StepProps) {
   const [items, setItems] = useState<ExperienceItem[] | null>(null);
@@ -25,6 +25,7 @@ export function ExperienceStep({ lib, update }: StepProps) {
     aiPost<ExperienceItem[]>("experience", {
       persona: lib.persona,
       tastes: lib.tastes,
+      mirror: lib.mirror,
     })
       .then((res) => {
         if (cancelled) return;

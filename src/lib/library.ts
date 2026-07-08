@@ -17,7 +17,7 @@ export interface Persona {
 }
 
 export interface Recommendation {
-  kind: "book" | "class";
+  kind: "book" | "class" | "video";
   title: string;
   reason: string;
   url?: string; // 제휴 링크

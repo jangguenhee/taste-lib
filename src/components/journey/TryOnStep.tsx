@@ -19,7 +19,11 @@ export function TryOnStep({ lib, update }: StepProps) {
 
   useEffect(() => {
     let cancelled = false;
-    aiPost<TryonResult>("tryon", { mirror: lib.mirror, tastes: lib.tastes })
+    aiPost<TryonResult>("tryon", {
+      mirror: lib.mirror,
+      tastes: lib.tastes,
+      answers: lib.answers,
+    })
       .then((res) => {
         if (cancelled) return;
         setResult(res.data);
@@ -90,7 +94,10 @@ export function TryOnStep({ lib, update }: StepProps) {
       <div className="text-center">
         <Button
           disabled={!selected}
-          onClick={() => selected && update({ tryonChoice: selected })}
+          onClick={() => {
+            const c = result.candidates.find((x) => x.id === selected);
+            if (c) update({ tryonChoice: `${c.name} — ${c.concept}` });
+          }}
         >
           이 옷이 나 같아요 →
         </Button>

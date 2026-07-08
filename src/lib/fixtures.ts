@@ -33,7 +33,7 @@ export interface DefineResult {
 }
 
 export interface ExperienceItem {
-  kind: "book" | "class";
+  kind: "book" | "class" | "video";
   title: string;
   reason: string;
   url: string;
