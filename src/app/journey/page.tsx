@@ -95,7 +95,7 @@ export default function JourneyPage() {
       <div className="w-full max-w-2xl">
         <div className="flex items-center justify-between">
           <Link href="/" className="text-sm text-muted hover:text-foreground">
-            ← 취향 서재
+            ← 결·곁·겹
           </Link>
           <div className="flex items-center gap-3">
             {signedIn && (

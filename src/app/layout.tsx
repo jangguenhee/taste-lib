@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "취향 서재 — 취향으로 나를 되찾는 곳",
+  title: "결·곁·겹 — 너의 결, 너의 곁, 너의 겹",
   description:
-    "자기를 잃어버린 것 같은 날, 취향은 아직 당신을 기억하고 있어요. 취향을 적재하고, 페르소나를 찾고, 첫 창작까지.",
+    "자기를 잃어버린 것 같은 날, 취향은 아직 당신을 기억하고 있어요. 너의 결을 찾고, 곁이 되어주고, 겹겹이 쌓아가는 취향 서재.",
 };
 
 export default function RootLayout({

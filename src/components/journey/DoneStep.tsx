@@ -20,6 +20,10 @@ export function DoneStep({ lib }: StepProps) {
   return (
     <div className="mt-4 text-center">
       <p className="text-5xl mb-6">🎉</p>
+      {/* 호칭의 전환: 랜딩의 "너의"가 여기서 "나의"가 된다 — 이 앱의 서사 */}
+      <p className="text-sm text-accent tracking-wide mb-3">
+        나의 결, 나의 곁, 나의 겹
+      </p>
       <h2 className="text-2xl font-bold mb-3">
         당신은 오늘, 만드는 사람이 됐어요
       </h2>

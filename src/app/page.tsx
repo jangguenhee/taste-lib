@@ -18,7 +18,10 @@ export default function Home() {
     <main className="flex-1 flex flex-col items-center px-6 py-16 sm:py-24">
       <div className="w-full max-w-2xl">
         {/* 브랜드 */}
-        <p className="text-sm tracking-widest text-muted mb-6">📚 취향 서재</p>
+        <p className="text-lg font-bold tracking-[0.3em] mb-1.5">결·곁·겹</p>
+        <p className="text-sm text-accent tracking-wide mb-8">
+          너의 결, 너의 곁, 너의 겹
+        </p>
 
         {/* 히어로 */}
         <h1 className="text-3xl sm:text-4xl font-bold leading-snug mb-5">
