@@ -1,6 +1,8 @@
 "use client";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+import { motion, type HTMLMotionProps } from "framer-motion";
+
+interface ButtonProps extends HTMLMotionProps<"button"> {
   variant?: "primary" | "ghost";
 }
 
@@ -10,10 +12,17 @@ export function Button({
   ...props
 }: ButtonProps) {
   const base =
-    "font-semibold rounded-lg px-6 py-2.5 transition-opacity disabled:opacity-30";
+    "font-semibold rounded-xl px-6 py-2.5 disabled:opacity-30 transition-colors";
   const styles =
     variant === "primary"
-      ? "bg-accent text-background hover:opacity-90"
+      ? "bg-accent text-background hover:bg-accent/90 paper-shadow"
       : "text-muted hover:text-foreground";
-  return <button className={`${base} ${styles} ${className}`} {...props} />;
+  return (
+    <motion.button
+      whileTap={{ scale: 0.97 }}
+      whileHover={{ y: -1 }}
+      className={`${base} ${styles} ${className}`}
+      {...props}
+    />
+  );
 }

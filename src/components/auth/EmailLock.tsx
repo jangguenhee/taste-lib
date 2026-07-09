@@ -76,7 +76,7 @@ export function EmailLock({
         </Button>
       </div>
       {phase === "error" && (
-        <p className="text-sm text-red-400 mt-2">
+        <p className="text-sm text-red-700 mt-2">
           메일 전송에 문제가 있었어요. 잠시 후 다시 시도해주세요.
         </p>
       )}

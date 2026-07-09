@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Thinking } from "@/components/ui/Thinking";
 import { SampleBadge } from "@/components/ui/SampleBadge";
+import { Reveal } from "@/components/ui/Reveal";
 import type { StepProps } from "./types";
 
 type Phase = "intro" | "loading" | "result";
@@ -78,31 +79,37 @@ export function MirrorStep({ lib, update }: StepProps) {
 
       <div className="space-y-3 mb-8">
         {result?.patterns.map((p, i) => (
-          <Card key={i}>
-            <p className="text-xs text-accent mb-1.5">반복된 결 {i + 1}</p>
-            <p className="leading-relaxed">{p}</p>
-          </Card>
+          <Reveal key={i} index={i}>
+            <Card>
+              <p className="text-xs text-accent mb-1.5">반복된 결 {i + 1}</p>
+              <p className="leading-relaxed">{p}</p>
+            </Card>
+          </Reveal>
         ))}
       </div>
 
       <div className="space-y-3 mb-8">
         {result?.strengths.map((s, i) => (
-          <Card key={i} className="border-accent/40">
-            <p className="text-xs text-accent mb-1.5">숨은 강점</p>
-            <p className="leading-relaxed">{s}</p>
-          </Card>
+          <Reveal key={i} index={3 + i}>
+            <Card className="border-accent/40">
+              <p className="text-xs text-warm mb-1.5">숨은 강점</p>
+              <p className="leading-relaxed">{s}</p>
+            </Card>
+          </Reveal>
         ))}
       </div>
 
-      <Card className="bg-accent-soft border-accent/40 mb-8">
-        <p className="leading-relaxed">{result?.summary}</p>
-      </Card>
+      <Reveal index={5}>
+        <Card className="bg-accent-soft/60 border-accent/30 mb-8">
+          <p className="leading-relaxed font-display">{result?.summary}</p>
+        </Card>
+      </Reveal>
 
-      <div className="text-center">
+      <Reveal index={6} className="text-center">
         <Button onClick={() => result && update({ mirror: result })}>
           이 모습, 더 자세히 볼래요 →
         </Button>
-      </div>
+      </Reveal>
     </div>
   );
 }

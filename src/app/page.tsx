@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { FloatingGyeol } from "@/components/ui/FloatingGyeol";
 
 const ACTS = [
   { no: "1막", title: "나를 마주하기", desc: "질문과 취향으로 원재료를 캐냅니다" },
@@ -15,8 +16,9 @@ const TRUST = [
 
 export default function Home() {
   return (
-    <main className="flex-1 flex flex-col items-center px-6 py-16 sm:py-24">
-      <div className="w-full max-w-2xl">
+    <main className="flex-1 flex flex-col items-center px-6 py-16 sm:py-24 relative">
+      <FloatingGyeol />
+      <div className="w-full max-w-2xl relative">
         {/* 브랜드 */}
         <p className="text-lg font-bold tracking-[0.3em] mb-1.5">결·곁·겹</p>
         <p className="text-sm text-accent tracking-wide mb-8">

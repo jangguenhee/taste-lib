@@ -1,14 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  /* 취향 서재 — 따뜻한 잉크빛 다크 + 보랏빛 포인트(프로토타입 연속성) */
-  --background: #0f0e13;
-  --foreground: #eae7f0;
-  --muted: #8b879a;
-  --accent: #8b7cf8;
-  --accent-soft: #241f36;
-  --card: #17151f;
-  --line: #2a2736;
+  /* 결·곁·겹 — 아침의 손편지: 미색 종이 위 잉크, 딥그린 포인트
+     차분하지만 살아있는 (ref: 유연한 곡선·쌓이는 움직임의 톤) */
+  --background: #f6f2ea; /* 미색 종이 */
+  --foreground: #262019; /* 따뜻한 잉크 */
+  --muted: #8a7f6f; /* 옅은 잉크 */
+  --accent: #2f5240; /* 딥그린 (책등) */
+  --accent-soft: #e7e0d2; /* 종이 그림자 */
+  --warm: #c1502e; /* 테라코타 — 감정의 순간에만 */
+  --card: #fdfbf6; /* 한 장 위에 올린 종이 */
+  --line: #e2d9c8; /* 연필선 */
 }
 
 @theme inline {
@@ -17,13 +19,46 @@
   --color-muted: var(--muted);
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
+  --color-warm: var(--warm);
   --color-card: var(--card);
   --color-line: var(--line);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-display);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+/* 제목·질문은 명조 — 문학적 온도 */
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display), serif;
+}
+
+/* 종이 질감 — 아주 옅은 그레인 (플랫함 제거) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.035'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* 콘텐츠가 그레인 위로 */
+main {
+  position: relative;
+  z-index: 2;
+}
+
+/* 부드러운 카드 그림자 — 선 대신 빛으로 구분 */
+.paper-shadow {
+  box-shadow:
+    0 1px 2px rgba(38, 32, 25, 0.04),
+    0 4px 16px rgba(38, 32, 25, 0.06);
 }

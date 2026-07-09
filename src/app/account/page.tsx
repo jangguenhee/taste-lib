@@ -73,8 +73,8 @@ export default function AccountPage() {
               로그아웃 (서재는 남아 있어요)
             </Button>
 
-            <Card className="border-red-900/50">
-              <p className="font-semibold mb-1.5 text-red-300">
+            <Card className="border-red-300">
+              <p className="font-semibold mb-1.5 text-red-700">
                 서재 완전히 지우기
               </p>
               <p className="text-sm text-muted mb-4">
